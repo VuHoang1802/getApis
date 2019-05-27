@@ -1,0 +1,22 @@
+.btn button{
+    background: none;
+    border: none;
+    border-right: 1px solid #333;
+    padding: 0px 5px;
+}
+
+.btn button:hover{
+    color: pink;
+}
+.header {
+    background: #FF6600;
+    padding: 10px 0px;
+    display: flex;
+}
+
+
+
+.notes span{
+    clear: both;
+    display: block;
+}
