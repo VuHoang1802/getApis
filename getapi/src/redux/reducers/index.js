@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import reducersAPI from './reducerList'
+import reducerNews from './reducerList'
 
 export default combineReducers({
-    todo:reducersAPI
+    new: reducerNews
 })

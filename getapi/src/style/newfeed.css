@@ -1,5 +1,6 @@
-.NewFeed{
-    display: flex;
+h4{
+    padding: 0px;
+    margin: 0px;
 }
 
 .NewFeed p{
@@ -21,4 +22,18 @@
 
 .describe button:hover{
     background: pink;
+}
+.NewFeed div{
+    
+}
+.NewFeed ul {
+    width: 100%;
+}
+.NewFeed li{
+    display: flex;
+    list-style: none;
+}
+
+.ButtonPage{
+    display: flex;
 }
