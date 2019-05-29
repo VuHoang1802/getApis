@@ -1,28 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import {LoadPage} from './../../redux/action/'
+import { LoadPage } from './../../redux/action/'
 class ButtonPage extends Component {
     ReLoadPage = () => {
         this.props.LoadPage(this.props.index);
     }
     render() {
-        
+        //const {LoadPage} = this.props;
         return (
             <div>
-                <button onClick = {() => this.ReLoadPage()}>{this.props.index}</button>
+                <li class="page-item"><button className= "page-link" onClick={() => this.ReLoadPage()}>{this.props.index}</button></li>
             </div>
         );
     }
 }
 const mapStateToProps = (state) => {
-    
+
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        LoadPage: (index) => {
-            dispatch(LoadPage(index))
-        }
+        LoadPage: (index) => LoadPage(dispatch,index)
     }
 }
 

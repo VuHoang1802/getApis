@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './../../style/newfeed.css'
 import { connect } from 'react-redux';
 import {fetchData} from './../../redux/action/index'
+
 class NewFeed extends Component {
     constructor(props) {
         super(props);
@@ -25,11 +26,11 @@ class NewFeed extends Component {
         return (
             <div >
                 <ul>
-                    <li className = "" key ={item.id}>
-                        <div>{index += 1}.</div> 
+                    <li className = "SomeNew" key ={item.id}>
+                        <div><b>{index += 1}.</b></div> 
                         <div>
                             <div>
-                                <h4>{item.title}</h4>
+                                <h5>{item.title}</h5>
                             </div>
                             <div>{
                                 this.convertTimeToHours(item.time)
@@ -41,11 +42,11 @@ class NewFeed extends Component {
         )
     }
     componentDidMount = () => {
-        this.props.initData()
+        console.log(this.props.startPage);
+        this.props.initData(this.props.startPage)
     }
     render() {
-        const { listNewId, listNewDetail } = this.props;
-        console.log("listNewDetail", listNewDetail)
+        const { listNewId, listNewDetail ,startPage} = this.props;
         return (
             <div className="NewFeed">
                 {listNewDetail.map((item, index) => {
@@ -57,17 +58,18 @@ class NewFeed extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { listNewId, listNewDetail } = state.new;
+    const { listNewId, listNewDetail, startPage} = state.new;
     return {
         listNewId,
         listNewDetail,
+        startPage,
     }
 }
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        initData: () => fetchData(dispatch)
+        initData: (indexPage) => fetchData(dispatch, indexPage)
     }
 }
 

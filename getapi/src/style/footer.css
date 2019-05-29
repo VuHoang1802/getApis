@@ -1,0 +1,9 @@
+.ButtonPage li{
+    list-style: none;
+    
+}
+
+.ButtonPage button{
+    background: none;
+    border: none;
+}
