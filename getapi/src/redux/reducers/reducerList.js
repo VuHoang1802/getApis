@@ -1,36 +1,34 @@
 
-import { getListStory, getDetailStory } from '../../api/storyApi';
-import { FETCH_DATA, SHOW_LIST, IS_FETCHING, NEXT_PAGE, DELETE_LIST } from '../types';
+import { FETCH_DATA, PREV_PAGE, MOVE_PAGE, IS_FETCHING, NEXT_PAGE, DELETE_LIST, FETCH_DATA_SUCCESED, FETCH_INIT_DATA_SUCCESSED } from '../types';
 
 
-
-
-const initState = {
-    isFetching:false,
-    listNewId : [],
+export const initState = {
+    isFetching: false,
+    listNewId: [],
     listNewDetail: [],
-    totalPage: 10,
-    startPage: 0,
+    totalPage: 0,
+    indexPage: 0,
 }
 
-const reducerNews = (state = initState, action) => {
+export const reducerNews = (state = initState, action) => {
     switch (action.type) {
         case DELETE_LIST:
-            state.startPage = action.MovePage;
-            console.log(action.MovePage);
-            var Delete = [];
-            return {...state, listNewDetail:Delete};
+        // state.startPage = action.MovePage;
+        // console.log(action.MovePage);
+        // var Delete = [];
+        // return {...state, listNewDetail:Delete};
+        case MOVE_PAGE:
+            return { ...state, indexPage: action.index };
+        case PREV_PAGE:
+            return { ...state, indexPage: action.indexPage };
         case NEXT_PAGE:
-            state.startPage = action.start;
-            return {...state, listNewId:action.listNewId};
-        case IS_FETCHING:
-            return {...state, isFetching:true}
+            return { ...state, indexPage: action.indexPage };
         case FETCH_DATA:
-            return {...state, listNewId:action.listNewId};
-        case SHOW_LIST:
-            const totalPages = [...state.listNewId].length / 10; 
-            const listNew = [...state.listNewDetail,...action.listNewDetail]
-            return {...state, listNewDetail:listNew, totalPage: totalPages};
+            return { ...state, listNewId: action.listId, isFetching: true };
+        case FETCH_INIT_DATA_SUCCESSED:
+            return { ...state, listNewId: action.listNewId, totalPage: action.totalPage }
+        case FETCH_DATA_SUCCESED:
+            return { ...state, listNewDetail: action.listNewDetail };
         default:
             return state
     }

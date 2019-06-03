@@ -6,7 +6,6 @@ class ButtonPage extends Component {
         this.props.LoadPage(this.props.index);
     }
     render() {
-        //const {LoadPage} = this.props;
         return (
             <div>
                 <li class="page-item"><button className= "page-link" onClick={() => this.ReLoadPage()}>{this.props.index}</button></li>
@@ -19,8 +18,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+    // return {
+    //     LoadPage: (index) => LoadPage(dispatch,index)
+    // }
+
     return {
-        LoadPage: (index) => LoadPage(dispatch,index)
+        LoadPage: (index) => dispatch(LoadPage(index))
     }
 }
 

@@ -2,6 +2,10 @@ h4{
     padding: 0px;
     margin: 0px;
 }
+a, a:hover{
+    text-decoration: none;
+    color: black;
+}
 
 .NewFeed p{
     padding: 0px; 
@@ -23,20 +27,15 @@ h4{
 .describe button:hover{
     background: pink;
 }
-.NewFeed div{
-    
-}
+
 .NewFeed ul {
-    width: 90%;
+    width: 100%;
 }
 .NewFeed li{
     display: flex;
     list-style: none;
 }
 
-.ButtonPage{
-    display: flex;
-}
 
 .SomeNew{
     background: rgb(208, 236, 255);

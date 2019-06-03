@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './../../style/newfeed.css'
 import { connect } from 'react-redux';
-import {fetchData} from './../../redux/action/index'
+import { fetchData } from './../../redux/action/index'
 
 class NewFeed extends Component {
     constructor(props) {
@@ -13,12 +13,12 @@ class NewFeed extends Component {
     componentWillMount = () => {
 
     }
-    convertTimeToHours(time){
-        var hour = time/3600;
+    convertTimeToHours(time) {
+        var hour = time / 3600;
         time = time % 3600;
-        
+
         var minute = Math.ceil(time / 60);
-        time=time%60;
+        time = time % 60;
         return hour + '.' + minute + '.' + time;
     }
 
@@ -26,27 +26,29 @@ class NewFeed extends Component {
         return (
             <div >
                 <ul>
-                    <li className = "SomeNew" key ={item.id}>
-                        <div><b>{index += 1}.</b></div> 
-                        <div>
+                    <li className="SomeNew" key={item.id}>
+                        <a href={item.url}>
+                            <div><b>{index += 1}.</b></div>
                             <div>
-                                <h5>{item.title}</h5>
-                            </div>
-                            <div>{
-                                this.convertTimeToHours(item.time)
+                                <div>
+                                    <h5>{item.title}</h5>
+                                </div>
+                                <div>{
+                                    this.convertTimeToHours(item.time)
                                 }</div>
-                        </div>
+                            </div>
+                        </a>
                     </li>
                 </ul>
             </div>
         )
     }
     componentDidMount = () => {
-        console.log(this.props.startPage);
-        this.props.initData(this.props.startPage)
+        this.props.initData();
     }
     render() {
-        const { listNewId, listNewDetail ,startPage} = this.props;
+        const { listNewId, listNewDetail, startPage } = this.props;
+        console.log(listNewDetail);
         return (
             <div className="NewFeed">
                 {listNewDetail.map((item, index) => {
@@ -58,7 +60,7 @@ class NewFeed extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { listNewId, listNewDetail, startPage} = state.new;
+    const { listNewId, listNewDetail, startPage } = state.new;
     return {
         listNewId,
         listNewDetail,
@@ -69,7 +71,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        initData: (indexPage) => fetchData(dispatch, indexPage)
+        initData: () => dispatch(fetchData())
     }
 }
 
